@@ -10,6 +10,6 @@
         <ComboBox fx:id="categoryComboBox" promptText="Select Category" />
         <Button fx:id="addCategoryButton" text="Add Category" onAction="#onAddCategory" />
         <Button fx:id="assignCategoryButton" text="Assign Category" onAction="#onAssignCategory" />
+        <Button fx:id="playButton" text="Play Movie" onAction="#onPlayMovie" />
     </HBox>
 </VBox>
-
