@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,4 +6,10 @@
     <TextField fx:id="searchField" promptText="Search movies..." />
     <Button fx:id="addButton" text="Add Movie" onAction="#onAddMovie" />
     <TableView fx:id="movieTable" />
+    <HBox spacing="10">
+        <ComboBox fx:id="categoryComboBox" promptText="Select Category" />
+        <Button fx:id="addCategoryButton" text="Add Category" onAction="#onAddCategory" />
+        <Button fx:id="assignCategoryButton" text="Assign Category" onAction="#onAssignCategory" />
+    </HBox>
 </VBox>
+
