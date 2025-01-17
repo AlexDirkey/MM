@@ -152,4 +152,47 @@ public class MovieController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    private void onRateMovie() {
+        Movie selectedMovie = movieTable.getSelectionModel().getSelectedItem();
+
+        if (selectedMovie != null) {
+            TextInputDialog dialog = new TextInputDialog(String.valueOf(selectedMovie.getPersonalRating()));
+            dialog.setTitle("Rate Movie");
+            dialog.setHeaderText("Update Personal Rating");
+            dialog.setContentText("Enter a new rating (0.0 to 10.0):");
+
+            dialog.showAndWait().ifPresent(input -> {
+                try {
+                    double newRating = Double.parseDouble(input);
+                    if (newRating >= 0.0 && newRating <= 10.0) {
+                        // Opdater vurderingen i databasen
+                        DatabaseManager.updatePersonalRating(selectedMovie.getId(), newRating);
+
+                        // Opdater GUI'en
+                        loadMovies();
+                    } else {
+                        showError("Invalid Rating", "Please enter a rating between 0.0 and 10.0.");
+                    }
+                } catch (NumberFormatException e) {
+                    showError("Invalid Input", "Please enter a valid numeric rating.");
+                }
+            });
+        } else {
+            showError("No Movie Selected", "Please select a movie to rate.");
+        }
+    }
+
+    @FXML
+    private void onSearch() {
+        String keyword = searchField.getText().toLowerCase();
+
+        List<Movie> filteredMovies = DatabaseManager.getAllMovies().stream()
+                .filter(movie -> movie.getTitle().toLowerCase().contains(keyword))
+                .toList();
+
+        movieList.setAll(filteredMovies);
+    }
+
 }

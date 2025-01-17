@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <VBox spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.movies.MovieController">
-    <TextField fx:id="searchField" promptText="Search movies..." />
+    <TextField fx:id="searchField" promptText="Search movies..." onKeyReleased="#onSearch" />
     <Button fx:id="addButton" text="Add Movie" onAction="#onAddMovie" />
     <TableView fx:id="movieTable" />
     <HBox spacing="10">
@@ -11,5 +11,7 @@
         <Button fx:id="addCategoryButton" text="Add Category" onAction="#onAddCategory" />
         <Button fx:id="assignCategoryButton" text="Assign Category" onAction="#onAssignCategory" />
         <Button fx:id="playButton" text="Play Movie" onAction="#onPlayMovie" />
+        <Button fx:id="rateMovieButton" text="Rate Movie" onAction="#onRateMovie" />
+
     </HBox>
 </VBox>
